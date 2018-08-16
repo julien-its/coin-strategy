@@ -42,13 +42,13 @@ class CoinsService implements ICoinsService
     }
 
     private function _checkUser()
-	{
-		if(!$this->user){
-			Throw new \Exception('Set user first');
-		}
-	}
+    {
+        if(!$this->user){
+            Throw new \Exception('Set user first');
+        }
+    }
 
-	private function _getCoinService(\AppBundle\Entity\CoinType $type)
+    private function _getCoinService(\AppBundle\Entity\CoinType $type) : ICoinStrategy
     {
         if(!key_exists($type->getName(), $this->coinServices) || $this->coinServices[$type->getName()] == null){
             $coinServiceName = "\\AppBundle\\Services\\Coins\Types\\{$type->getClassName()}Service";
